@@ -134,4 +134,3 @@ fun search(id: Long) : PlacemarkModel? {
     return placemarks.find { p -> p.id == id }
 }
 
-
