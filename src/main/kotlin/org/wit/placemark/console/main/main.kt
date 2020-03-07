@@ -121,7 +121,7 @@ fun searchPlacemark() {
 fun getId() : Long {
     val strId : String? // String to hold user input
     val searchId : Long // Long to hold converted id
-    print("Enter id to Search/Update : ")
+    print("Enter id to Search or Update : ")
     strId = readLine()!!
     searchId = if (strId.toLongOrNull() != null && strId.isNotEmpty())
         strId.toLong()
