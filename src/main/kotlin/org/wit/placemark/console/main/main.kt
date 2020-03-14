@@ -1,11 +1,16 @@
 package org.wit.placemark.console.main
 
 import mu.KotlinLogging
+import org.wit.placemark.console.models.PlacemarkMemStore
 import org.wit.placemark.console.models.PlacemarkModel
+import org.wit.placemark.console.views.PlacemarkView
+import org.wit.placemark.console.controllers.PlacemarkController
 
 private val logger = KotlinLogging.logger {}
+val controller = PlacemarkController()
 
-val placemarks = ArrayList<PlacemarkModel>()
+val placemarks = PlacemarkMemStore()
+val placemarkView = PlacemarkView()
 
 
 fun main() {
@@ -15,12 +20,13 @@ fun main() {
     var input: Int
 
     do {
-        input = menu()
+        input = controller.menu()
         when(input) {
             1 -> addPlacemark()
             2 -> updatePlacemark()
             3 -> listPlacemarks()
             4 -> searchPlacemark()
+            -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
         }
@@ -29,108 +35,24 @@ fun main() {
     logger.info { "Shutting Down Placemark Console App" }
 }
 
-fun menu() : Int {
-
-    val option : Int
-    val input: String?
-
-    println("Main Menu")
-    println(" 1. Add Placemark")
-    println(" 2. Update Placemark")
-    println(" 3. List All Placemarks")
-    println(" 4. Search Placemarks")
-    println("-1. Exit")
-    println()
-    print("Enter an integer : ")
-    input = readLine()!!
-    option = if (input.toIntOrNull() != null && input.isNotEmpty())
-        input.toInt()
-    else
-        -9
-    return option
-}
-
-
 fun addPlacemark(){
-    val aPlacemark = PlacemarkModel()
-    println("Add Placemark")
-    println()
-    print("Enter a Title : ")
-    aPlacemark.title = readLine()!!
-    print("Enter a Description : ")
-    aPlacemark.description = readLine()!!
-
-    if (aPlacemark.title.isNotEmpty() && aPlacemark.description.isNotEmpty()) {
-        aPlacemark.id = placemarks.size.toLong()
-        placemarks.add(aPlacemark.copy())
-        logger.info("Placemark Added : [ $aPlacemark ]")
-    }
-    else
-        logger.info("Placemark Not Added")
+    controller.add()
 }
 
 
 fun updatePlacemark() {
-    println("Update Placemark")
-    println()
-    listPlacemarks()
-    val searchId = getId()
-    val aPlacemark = search(searchId)
-    val tempTitle : String?
-    val tempDescription : String?
-
-    if(aPlacemark != null) {
-        print("Enter a new Title for [ " + aPlacemark.title + " ] : ")
-        tempTitle = readLine()!!
-        print("Enter a new Description for [ " + aPlacemark.description + " ] : ")
-        tempDescription = readLine()!!
-
-        if (!tempTitle.isNullOrEmpty() && !tempDescription.isNullOrEmpty()) {
-            aPlacemark.title = tempTitle
-            aPlacemark.description = tempDescription
-            println(
-                "You updated [ " + aPlacemark.title + " ] for title " +
-                        "and [ " + aPlacemark.description + " ] for description")
-            logger.info("Placemark Updated : [ $aPlacemark ] ")
-        }
-        else logger.info("Placemark Not Updated")
-    }
-    else
-        println("Placemark Not Updated...")
+    controller.update()
 }
 
 fun listPlacemarks() {
-    println("List All Placemarks")
-    println()
-    placemarks.forEach { logger.info("$it") }
-    println()
+    controller.list()
 }
 
 fun searchPlacemark() {
-
-    val searchId = getId()
-    val aPlacemark = search(searchId)
-
-    if(aPlacemark != null)
-        println("Placemark Details [ $aPlacemark ]")
-    else
-        println("Placemark Not Found...")
+    controller.search()
 }
 
-
-fun getId() : Long {
-    val strId : String? // String to hold user input
-    val searchId : Long // Long to hold converted id
-    print("Enter id to Search or Update : ")
-    strId = readLine()!!
-    searchId = if (strId.toLongOrNull() != null && strId.isNotEmpty())
-        strId.toLong()
-    else
-        -9
-    return searchId
-}
-
-fun search(id: Long) : PlacemarkModel? {
-    return placemarks.find { p -> p.id == id }
+fun dummyData() {
+    controller.dummyData()
 }
 
