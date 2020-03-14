@@ -1,17 +1,14 @@
 package org.wit.placemark.console.views
 
-import org.wit.placemark.console.views.PlacemarkView
-import org.wit.placemark.console.main.placemarks
 import org.wit.placemark.console.models.PlacemarkMemStore
 import org.wit.placemark.console.models.PlacemarkModel
-import org.wit.placemark.console.controllers.PlacemarkController
 
 class PlacemarkView {
 
     fun menu() : Int {
 
-        var option : Int
-        var input: String?
+        val option : Int
+        val input: String?
 
         println("MAIN MENU")
         println(" 1. Add Placemark")
@@ -22,7 +19,7 @@ class PlacemarkView {
         println()
         print("Enter Option : ")
         input = readLine()!!
-        option = if (input.toIntOrNull() != null && !input.isEmpty())
+        option = if (input.toIntOrNull() != null && input.isNotEmpty())
             input.toInt()
         else
             -9
@@ -37,10 +34,7 @@ class PlacemarkView {
     }
 
     fun showPlacemark(placemark : PlacemarkModel) {
-        if(placemark != null)
-            println("Placemark Details [ $placemark ]")
-        else
-            println("Placemark Not Found...")
+        println("Placemark Details [ $placemark ]")
     }
 
     fun addPlacemarkData(placemark : PlacemarkModel) : Boolean {
@@ -56,30 +50,28 @@ class PlacemarkView {
 
     fun updatePlacemarkData(placemark : PlacemarkModel) : Boolean {
 
-        var tempTitle: String?
-        var tempDescription: String?
+        val tempTitle: String?
+        val tempDescription: String?
 
-        if (placemark != null) {
-            print("Enter a new Title for [ " + placemark.title + " ] : ")
-            tempTitle = readLine()!!
-            print("Enter a new Description for [ " + placemark.description + " ] : ")
-            tempDescription = readLine()!!
+        print("Enter a new Title for [ " + placemark.title + " ] : ")
+        tempTitle = readLine()!!
+        print("Enter a new Description for [ " + placemark.description + " ] : ")
+        tempDescription = readLine()!!
 
-            if (!tempTitle.isNullOrEmpty() && !tempDescription.isNullOrEmpty()) {
-                placemark.title = tempTitle
-                placemark.description = tempDescription
-                return true
-            }
+        if (!tempTitle.isNullOrEmpty() && !tempDescription.isNullOrEmpty()) {
+            placemark.title = tempTitle
+            placemark.description = tempDescription
+            return true
         }
         return false
     }
 
     fun getId() : Long {
-        var strId : String? // String to hold user input
-        var searchId : Long // Long to hold converted id
+        val strId : String? // String to hold user input
+        val searchId : Long // Long to hold converted id
         print("Enter id to Search/Update : ")
         strId = readLine()!!
-        searchId = if (strId.toLongOrNull() != null && !strId.isEmpty())
+        searchId = if (strId.toLongOrNull() != null && strId.isNotEmpty())
             strId.toLong()
         else
             -9

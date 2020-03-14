@@ -11,15 +11,14 @@ internal fun getId(): Long {
 
 class PlacemarkMemStore : PlacemarkStore {
 
-    val placemarks = ArrayList<PlacemarkModel>()
+    private val placemarks = ArrayList<PlacemarkModel>()
 
     override fun findAll(): List<PlacemarkModel> {
         return placemarks
     }
 
     override fun findOne(id: Long) : PlacemarkModel? {
-        var foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.id == id }
-        return foundPlacemark
+        return placemarks.find { p -> p.id == id }
     }
 
     override fun create(placemark: PlacemarkModel) {
@@ -29,7 +28,7 @@ class PlacemarkMemStore : PlacemarkStore {
     }
 
     override fun update(placemark: PlacemarkModel) {
-        var foundPlacemark = findOne(placemark.id!!)
+        val foundPlacemark = findOne(placemark.id)
         if (foundPlacemark != null) {
             foundPlacemark.title = placemark.title
             foundPlacemark.description = placemark.description

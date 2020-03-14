@@ -1,16 +1,10 @@
 package org.wit.placemark.console.main
 
 import mu.KotlinLogging
-import org.wit.placemark.console.models.PlacemarkMemStore
-import org.wit.placemark.console.models.PlacemarkModel
-import org.wit.placemark.console.views.PlacemarkView
-import org.wit.placemark.console.controllers.PlacemarkController
+import org.wit.placemark.console.controller.PlacemarkController
 
 private val logger = KotlinLogging.logger {}
 val controller = PlacemarkController()
-
-val placemarks = PlacemarkMemStore()
-val placemarkView = PlacemarkView()
 
 
 fun main() {

@@ -1,4 +1,4 @@
-package org.wit.placemark.console.controllers
+package org.wit.placemark.console.controller
 
 import mu.KotlinLogging
 import org.wit.placemark.console.models.PlacemarkMemStore
@@ -7,9 +7,9 @@ import org.wit.placemark.console.views.PlacemarkView
 
 class PlacemarkController {
 
-    val placemarks = PlacemarkMemStore()
-    val placemarkView = PlacemarkView()
-    val logger = KotlinLogging.logger {}
+    private val placemarks = PlacemarkMemStore()
+    private val placemarkView = PlacemarkView()
+    private val logger = KotlinLogging.logger {}
 
     init {
         logger.info { "Launching Placemark Console App" }
@@ -19,7 +19,7 @@ class PlacemarkController {
     fun menu() :Int { return placemarkView.menu() }
 
     fun add(){
-        var aPlacemark = PlacemarkModel()
+        val aPlacemark = PlacemarkModel()
 
         if (placemarkView.addPlacemarkData(aPlacemark))
             placemarks.create(aPlacemark)
@@ -34,7 +34,7 @@ class PlacemarkController {
     fun update() {
 
         list()
-        var searchId = placemarkView.getId()
+        val searchId = placemarkView.getId()
         val aPlacemark = search(searchId)
 
         if(aPlacemark != null) {
@@ -56,9 +56,8 @@ class PlacemarkController {
     }
 
 
-    fun search(id: Long) : PlacemarkModel? {
-        var foundPlacemark = placemarks.findOne(id)
-        return foundPlacemark
+    private fun search(id: Long) : PlacemarkModel? {
+        return placemarks.findOne(id)
     }
 
     fun dummyData() {
