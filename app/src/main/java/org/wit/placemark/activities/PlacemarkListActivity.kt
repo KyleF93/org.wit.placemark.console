@@ -12,7 +12,6 @@ import org.wit.placemark.R
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
 
-
 class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
 
   lateinit var app: MainApp
@@ -27,6 +26,16 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = PlacemarkAdapter(app.placemarks.findAll(), this)
+    loadPlacemarks()
+  }
+
+  private fun loadPlacemarks() {
+    showPlacemarks( app.placemarks.findAll())
+  }
+
+  fun showPlacemarks (placemarks: List<PlacemarkModel>) {
+    recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+    recyclerView.adapter?.notifyDataSetChanged()
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,7 +55,7 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    recyclerView.adapter?.notifyDataSetChanged()
+    loadPlacemarks()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }
