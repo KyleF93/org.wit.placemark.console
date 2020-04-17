@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "412858590025",
+    "firebase_url": "https://lunar-byte-273211.firebaseio.com",
+    "project_id": "lunar-byte-273211",
+    "storage_bucket": "lunar-byte-273211.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412858590025:android:223f9cb689e694c9b5b098",
+        "android_client_info": {
+          "package_name": "org.wit.placemark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412858590025-f99fbs9ljj548m7jt01097u22fd77of7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFbCIFUBuLmVqRZf-lMTPRPrU4hLlmBBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412858590025-f99fbs9ljj548m7jt01097u22fd77of7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
