@@ -5,5 +5,10 @@
     <item
         android:id="@+id/item_cancel"
         android:title="@string/menu_cancelPlacemark"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_delete"
+        android:title="@string/menu_deletePlacemark"
+        app:showAsAction="always" />
+
 </menu>
