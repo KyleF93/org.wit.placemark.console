@@ -12,4 +12,13 @@
   <string name="change_placemark_image">Change placemark image</string>
   <string name="button_location">Set Location</string>
   <string name="title_activity_maps">Map</string>
+    <string name="email_hint">email</string>
+  <string name="get_password_link">password</string>
+  <string name="back">back</string>
+  <string name="password_hint">password hint</string>
+  <string name="login_btn">login</string>
+  <string name="signup_btn">signup</string>
+  <string name="update_pass">update password</string>
+  <string name="logout">logout</string>
+    <string name="new_password">new password</string>
 </resources>

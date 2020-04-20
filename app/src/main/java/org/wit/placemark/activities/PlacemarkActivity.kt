@@ -1,12 +1,12 @@
 package org.wit.placemark.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_placemark.*
-import kotlinx.android.synthetic.main.activity_placemark_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
@@ -18,8 +18,16 @@ import org.wit.placemark.helpers.showImagePicker
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.Location
 import org.wit.placemark.models.PlacemarkModel
+import android.widget.Button
+import android.widget.Toast
+
 
 class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
+
+  private lateinit var auth: FirebaseAuth
+
+  private lateinit var logoutBtn: Button
+  private lateinit var updatePass: Button
 
   var placemark = PlacemarkModel()
   var edit = false
@@ -30,7 +38,32 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    auth = FirebaseAuth.getInstance()
+
+    if(auth.currentUser == null){
+      val intent = Intent(this, LoginActivity::class.java)
+      startActivity(intent)
+      finish()
+    }else{
+      Toast.makeText(this, "Already logged in", Toast.LENGTH_LONG).show()
+    }
+
     setContentView(R.layout.activity_placemark)
+
+    logoutBtn = findViewById(R.id.logout_btn)
+    updatePass = findViewById(R.id.update_pass_btn)
+
+    logoutBtn.setOnClickListener{
+      FirebaseAuth.getInstance().signOut()
+      val intent = Intent(this, LoginActivity::class.java)
+      startActivity(intent)
+      finish()
+    }
+
+    updatePass.setOnClickListener{
+      val intent = Intent(this, UpdatePassword::class.java)
+      startActivity(intent)
+    }
 
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
@@ -57,6 +90,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
         chooseImage.setText(R.string.change_placemark_image)
       }
     }
+
 
     btnAdd.setOnClickListener() {
       placemark.title = placemarkTitle.text.toString()
