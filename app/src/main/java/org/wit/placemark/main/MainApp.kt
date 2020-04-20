@@ -16,5 +16,3 @@ class MainApp : Application(), AnkoLogger {
         info("Placemark started")
     }
 }
-
-///dvfsgsgsgsgsgsgsgsgs
