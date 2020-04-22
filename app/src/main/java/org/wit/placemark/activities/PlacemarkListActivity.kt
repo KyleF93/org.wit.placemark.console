@@ -33,7 +33,7 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
     showPlacemarks( app.placemarks.findAll())
   }
 
-  fun showPlacemarks (placemarks: List<PlacemarkModel>) {
+  private fun showPlacemarks (placemarks: List<PlacemarkModel>) {
     recyclerView.adapter = PlacemarkAdapter(placemarks, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }

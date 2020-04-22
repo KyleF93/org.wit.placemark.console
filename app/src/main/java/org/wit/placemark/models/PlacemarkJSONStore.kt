@@ -9,9 +9,9 @@ import org.jetbrains.anko.info
 import org.wit.placemark.helpers.*
 import java.util.*
 
-val JSON_FILE = "Newplacemarks.json"
+val JSON_FILE = "placemarks.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
-val listType = object : TypeToken<java.util.ArrayList<PlacemarkModel>>() {}.type
+val listType = object : TypeToken<ArrayList<PlacemarkModel>>() {}.type
 
 fun generateRandomId(): Long {
     return Random().nextLong()
@@ -42,7 +42,6 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
 
 
     override fun update(placemark: PlacemarkModel) {
-
         var foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.id == placemark.id }
         if (foundPlacemark != null) {
             foundPlacemark.title = placemark.title
@@ -52,6 +51,7 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
             foundPlacemark.lng = placemark.lng
             foundPlacemark.zoom = placemark.zoom
             logAll()
+            serialize()
         }
     }
     override fun delete(placemark: PlacemarkModel) {

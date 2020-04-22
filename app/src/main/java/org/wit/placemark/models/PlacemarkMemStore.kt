@@ -1,4 +1,3 @@
-
 package org.wit.placemark.models
 
 import org.jetbrains.anko.AnkoLogger

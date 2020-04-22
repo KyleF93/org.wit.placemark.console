@@ -1,0 +1,22 @@
+{
+  "name": "placemark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyleF93/org.wit.placemark.console.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KyleF93/org.wit.placemark.console/issues"
+  },
+  "homepage": "https://github.com/KyleF93/org.wit.placemark.console#readme",
+  "dependencies": {
+    "firestore-export-import": "^0.5.0"
+  }
+}

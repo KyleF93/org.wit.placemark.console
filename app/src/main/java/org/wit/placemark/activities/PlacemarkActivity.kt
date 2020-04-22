@@ -91,7 +91,6 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       }
     }
 
-
     btnAdd.setOnClickListener() {
       placemark.title = placemarkTitle.text.toString()
       placemark.description = description.text.toString()
@@ -107,11 +106,6 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       info("add Button Pressed: $placemarkTitle")
       setResult(AppCompatActivity.RESULT_OK)
       finish()
-    }
-
-    placemarkLocation.setOnClickListener {
-      val location = Location(52.245696, -7.139102, 15f)
-      startActivity (intentFor<MapsActivity>().putExtra("location", location))
     }
 
     placemarkLocation.setOnClickListener {
