@@ -17,7 +17,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
     // Access a Cloud Firestore instance from your Activity
     val db = Firebase.firestore
 
-    override fun findAll(): MutableList<PlacemarkModel> {
+    override fun findAll(): List<PlacemarkModel> {
         return placemarks
     }
 
@@ -44,7 +44,6 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
-        serialize()
     }
 
 
@@ -65,13 +64,6 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
         placemarks.remove(placemark)
     }
 
-    private fun serialize() {
-        //todo
-    }
-
-    private fun deserialize() {
-        //todo
-    }
     fun logAll() {
         placemarks.forEach { info("${it}") }
     }
