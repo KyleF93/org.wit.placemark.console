@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:title="@string/app_name"
+        android:icon="@mipmap/skatemark"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/item_cancel"
         android:title="@string/menu_cancelPlacemark"
         app:showAsAction="always" />

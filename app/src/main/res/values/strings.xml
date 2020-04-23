@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Placemark</string>
+    <string name="app_name">Skatemark</string>
     <string name="hint_placemarkTitle">Placemark Title</string>
     <string name="hint_placemarkDescription">Description </string>
     <string name="button_addPlacemark">Add Placemark</string>
@@ -24,4 +24,5 @@
     <string name="menu_deletePlacemark">Delete</string>
     <string name="splash_loading">Loading...</string>
     <string name="splash_image_desc">skateboarder</string>
+    <string name="add">Add</string>
 </resources>
