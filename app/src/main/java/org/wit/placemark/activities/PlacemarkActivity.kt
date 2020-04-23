@@ -38,6 +38,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_placemark)
     auth = FirebaseAuth.getInstance()
 
     if(auth.currentUser == null){
