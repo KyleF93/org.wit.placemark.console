@@ -12,7 +12,7 @@ import org.wit.placemark.models.*
 
 class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
 
-    val placemarks = ArrayList<PlacemarkModel>()
+    private val placemarks = ArrayList<PlacemarkModel>()
 
     // Access a Cloud Firestore instance from your Activity
     val db = Firebase.firestore
@@ -23,6 +23,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
 
     override fun create(placemark: PlacemarkModel) {
         placemark.id = generateRandomId()
+        var x = placemark.title
         placemarks.add(placemark)
         // Create a new placemark in firestore with the following fields
         val placemark = hashMapOf(
@@ -36,10 +37,10 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
         )
 
         // Add a new document with a generated ID
-        db.collection("placemarks")
-            .add(placemark)
+        db.collection("placemarks").document(x)
+            .set(placemark)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                Log.d(TAG, "DocumentSnapshot added with ID")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
@@ -62,6 +63,11 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
     }
     override fun delete(placemark: PlacemarkModel) {
         placemarks.remove(placemark)
+        var x = placemark.title
+        db.collection("placemarks").document(x)
+            .delete()
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
     }
 
     fun logAll() {

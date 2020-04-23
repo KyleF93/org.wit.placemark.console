@@ -114,20 +114,22 @@
         <Button
             android:id="@+id/update_pass_btn"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_margin="16dp"
             android:text="@string/update_pass"
-            app:layout_constraintBottom_toTopOf="@+id/logout_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"/>
 
         <Button
             android:id="@+id/logout_btn"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@color/colorAccent"
             android:text="@string/logout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"/>
 
       </LinearLayout>
     </ScrollView>
