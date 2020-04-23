@@ -22,4 +22,6 @@
     <string name="logout">logout</string>
     <string name="new_password">new password</string>
     <string name="menu_deletePlacemark">Delete</string>
+    <string name="splash_loading">Loading...</string>
+    <string name="splash_image_desc">skateboarder</string>
 </resources>
