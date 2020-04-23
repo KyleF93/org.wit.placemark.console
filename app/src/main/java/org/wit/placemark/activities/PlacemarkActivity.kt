@@ -38,14 +38,13 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_placemark)
     auth = FirebaseAuth.getInstance()
 
     if(auth.currentUser == null){
       val intent = Intent(this, LoginActivity::class.java)
       startActivity(intent)
       finish()
-    }else{
+    }else {
       Toast.makeText(this, "Already logged in", Toast.LENGTH_LONG).show()
     }
 

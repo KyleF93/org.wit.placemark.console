@@ -19,36 +19,24 @@
 
         <activity
             android:name=".activities.ForgotPasswordActivity"
-            android:label="Forgot Password">
-        </activity>
-
+            android:label="Forgot Password"></activity>
         <activity
             android:name=".activities.UpdatePassword"
-            android:label="Update Password">
-        </activity>
-
+            android:label="Update Password"></activity>
         <activity
             android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps">
-        </activity>
-
+            android:label="@string/title_activity_maps"></activity>
         <activity
             android:name=".activities.LoginActivity"
-            android:label="Login">
-        </activity>
-
+            android:label="Login"></activity>
         <activity
             android:name=".activities.SignupActivity"
-            android:label="Sign up">
-        </activity>
+            android:label="Sign up"></activity>
+
+        <activity android:name=".activities.PlacemarkActivity"></activity>
 
         <activity
-            android:name=".activities.PlacemarkActivity">
-        </activity>
-
-        <activity
-            android:name=".activities.SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".activities.PlacemarkListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
