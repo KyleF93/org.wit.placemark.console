@@ -1,22 +1,22 @@
-
 package org.wit.placemark.models.firebase
+/*
 
-
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.util.Log
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.wit.placemark.models.*
 
-class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
+class PlacemarkFireStoreRT(val context: Context) : PlacemarkStore, AnkoLogger {
 
     private val placemarks = ArrayList<PlacemarkModel>()
 
     // Access a Cloud Firestore instance from your Activity
     val db = Firebase.firestore
+    private lateinit var database: DatabaseReference
 
     override fun findAll(): List<PlacemarkModel> {
         return placemarks
@@ -24,9 +24,23 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
 
     override fun create(placemark: PlacemarkModel) {
         placemark.id = generateRandomId()
-        var x = placemark.title
+        //var x = placemark.title
+        database = Firebase.database.reference
         placemarks.add(placemark)
-        // Create a new placemark in firestore with the following fields
+        val placemarks: List<PlacemarkModel> = mutableListOf(
+            PlacemarkModel(placemark.id, placemark.description, placemark.title, placemark.image, placemark.lat,
+                placemark.lng, placemark.fbid, placemark.zoom)
+        )
+        placemarks.forEach {
+            val key = database.child("placemarks").push().key
+            if (key != null) {
+                it.fbid = key
+            }
+            if (key != null) {
+                database.child("placemarks").child(key).setValue(it)
+            }
+        }
+        /*/ Create a new placemark in firestore with the following fields
         val placemark = hashMapOf(
             "title" to placemark.title,
             "description" to placemark.description,
@@ -45,7 +59,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
-            }
+            }*/
     }
 
 
@@ -60,18 +74,29 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
             foundPlacemark.lng = placemark.lng
             foundPlacemark.zoom = placemark.zoom
             logAll()
+
+            val update = placemark.toMap()
+            val key = placemark.fbid
+
+            val childUpdates = HashMap<String, Any>()
+            childUpdates["/placemarks"] = update
+
+            database.child("placemarks").updateChildren(childUpdates)
+
         }
     }
     override fun delete(placemark: PlacemarkModel) {
         placemarks.remove(placemark)
-        var x = placemark.title
+        val key = placemark.fbid
+        database.child("placemarks").child(key).removeValue()
+        /*var x = placemark.title
         db.collection("placemarks").document(x)
             .delete()
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }*/
     }
 
     fun logAll() {
         placemarks.forEach { info("${it}") }
     }
-}
+}*/
