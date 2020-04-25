@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:title="@string/app_name"
-        android:icon="@mipmap/skatemark"
+        android:title="Find"
+        android:icon="@drawable/find"
         app:showAsAction="always" />
     <item
-        android:id="@+id/item_cancel"
-        android:title="@string/menu_cancelPlacemark"
+        android:title="Mark"
+        android:icon="@drawable/skatemarkaction"
         app:showAsAction="always" />
     <item
-        android:id="@+id/item_delete"
-        android:title="@string/menu_deletePlacemark"
+        android:title="Share"
+        android:icon="@drawable/share"
         app:showAsAction="always" />
-
-</menu>
+    </menu>

@@ -28,6 +28,16 @@
     android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/bottomNavigationView"
+      android:layout_gravity="bottom"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:itemBackground="@color/colorAccent"
+      app:itemIconTint="@android:color/white"
+      app:itemTextColor="@android:color/white"
+      app:menu="@menu/bottom_nav" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
