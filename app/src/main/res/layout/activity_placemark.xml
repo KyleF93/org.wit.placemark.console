@@ -76,6 +76,7 @@
             android:stepSize="1"
             android:layout_centerHorizontal="true"/>
 
+
         <ImageView
             android:id="@+id/placemarkImage"
             android:layout_width="match_parent"
